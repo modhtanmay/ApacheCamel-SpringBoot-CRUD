@@ -40,8 +40,8 @@ public class AddressController {
 	}
 	
 	@DeleteMapping("/addresses/{countryCode}")
-	public String deleteAddress(@PathVariable String countryCode,@RequestBody Address addr) {
-		producerTemplate.requestBody("direct:delete",addr,List.class);
+	public String deleteAddress(@PathVariable String countryCode) {
+		producerTemplate.requestBody("direct:delete",countryCode,List.class);
 		return "Address Deleted";
 	}
 }

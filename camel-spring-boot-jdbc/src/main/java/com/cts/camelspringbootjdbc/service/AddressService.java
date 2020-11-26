@@ -98,13 +98,12 @@ public class AddressService extends RouteBuilder{
 			@Override
 			public void process(Exchange exchange) throws Exception {
 				// TODO Auto-generated method stub
-				Address address = exchange.getIn().getBody(Address.class);
-				String countryCode = "PK";
-//				String sql = "DELETE from address where countryCode = '"+countryCode+"'";
-				String sql = "DELETE from address where countryCode = '"+address.getCountryCode()+"'";
+				
+				String countryCode = exchange.getIn().getBody(String.class);
+				String sql = "delete from address where countryCode = '"+countryCode+"'";
 				exchange.getIn().setBody(sql);
 			}
-		});
+		}).to("jdbc:dataSource");
 		
 		
 	}
